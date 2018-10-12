@@ -1,0 +1,10 @@
+{% extends "homepage.html"%}
+
+{% block content %}
+    <form action="{{ url_for('getCadTerreno')}}" method="post">
+        <input type="text" required value="Lote" name="terrenolote"><br>
+        <input type="text" required value="Endereco" name="terrenoendereco"><br>
+        <input type="text" required value="CPF" name="terrenoid_cpf"><br>
+        <button type="submit">Cadastrar</button>
+    </form>
+{% endblock %}

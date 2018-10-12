@@ -1,6 +1,6 @@
 from flask import render_template, request, session, flash, abort, redirect, url_for
 from app import app
-# from mymap.database.core_insert import insertUser as insertUser
+from data import insert as ins
 # from mymap.database.core_select import selectUser as selectUser
 # from mymap.database.core_select import getPassword as getPassword
 
@@ -9,42 +9,63 @@ from app import app
 def homepage():
     return render_template('homepage.html', title='Homepage')
 
+@app.route('/conscond')
+def conscond():
+    return render_template('consulta-condominos.html', title='Consulta Condominos')
+
 @app.route('/cadcond')
 def cadcond():
-    return render_template('cadastro-condominos.html', title='IMAP Portal')
+    return render_template('cadastro-condominos.html', title='Cadastro Condominos')
 
-# @app.route('/charts')
-# def charts():
-#     return render_template('charts.html', title='Charts')
-#
-# @app.route('/widgets')
-# def widgets():
-#     return render_template('widgets.html', title='Widgets')
-#
-# @app.route('/tables')
-# def tables():
-#     return render_template('tables.html', title='Tables')
-#
-# @app.route('/grid')
-# def grid():
-#     return render_template('grid.html', title='Grid')
-#
-# @app.route('/form-basic')
-# def formbasic():
-#     return render_template('form-basic.html', title='Form-Basic')
-#
-# @app.route('/form-wizard')
-# def formwizard():
-#     return render_template('form-wizard.html', title='Form-Wizard')
-#
-# @app.route('/pages-buttons')
-# def buttons():
-#     return render_template('pages-buttons.html', title='Butttons')
-#
-# @app.route('/login')
-# def login():
-#     return render_template('authentication-login.html', title='Login')
-#
+@app.route('/cadcond', methods=['POST', 'GET'])
+def getCadCond():
+    condcpf = request.form['condcpf']
+    condnome = request.form['condnome']
+    conddn = request.form['conddn']
+    condpw = request.form['condpw']
+    ins.insertCond(condcpf, condnome, conddn, condpw)
+    return render_template('homepage.html', title='Homepage')
+
+@app.route('/cadfunc')
+def cadfunc():
+    return render_template('cadastro-funcionario.html', title='Cadastro Funcionario')
+
+@app.route('/cadfunc', methods=['POST', 'GET'])
+def getCadFunc():
+    funccpf = request.form['funccpf']
+    funcnome = request.form['funcnome']
+    funcdn = request.form['funcdn']
+    funcpw = request.form['funcpw']
+    funcfuncao = request.form['funcfuncao']
+    ins.insertFunc(funccpf, funcnome, funcdn, funcpw, funcfuncao)
+    return render_template('homepage.html', title='Homepage')
+
+
+@app.route('/cadprestserv')
+def cadprestserv():
+    return render_template('cadastro-prestserv.html', title='Cadastro Prestador de Serviço')
+
+@app.route('/cadprestserv', methods=['POST', 'GET'])
+def getPrestServ():
+    prestservcpf = request.form['prestservcpf']
+    prestservnome = request.form['prestservnome']
+    prestservdn = request.form['prestservdn']
+    prestservid_terreno = request.form['prestservid_terreno']
+    ins.insertPresserv(prestservcpf, prestservnome, prestservdn, prestservid_terreno)
+    return render_template('homepage.html', title='Homepage')
+
+
+@app.route('/cadterreno')
+def cadterreno():
+    return render_template('cadastro-terreno.html', title='Cadastro Terreno')
+
+@app.route('/cadterreno', methods=['POST', 'GET'])
+def getCadTerreno():
+    terrenolote = request.form['terrenolote']
+    terrenoendereco = request.form['terrenoendereco']
+    terrenoid_cpf = request.form['terrenoid_cpf']
+    ins.insertTerreno(terrenolote, terrenoendereco, terrenoid_cpf)
+    return render_template('homepage.html', title='Homepage')
 # @app.route('/register')
 # def loginreg():
 #     return render_template('authentication-register.html', title='Register')

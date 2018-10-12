@@ -1,0 +1,11 @@
+{% extends "homepage.html"%}
+
+{% block content %}
+    <form action="{{ url_for('getCadCond')}}" method="post">
+        <input type="text" required value="CPF" name="condcpf"><br>
+        <input type="text" required value="Nome" name="condnome"><br>
+        <input type="date" required value="Data Nascimento" name="conddn"><br>
+        <input type="password" required value="Senha" name="condpw"><br>
+        <button type="submit">Cadastrar</button>
+    </form>
+{% endblock %}

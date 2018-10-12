@@ -1,4 +1,4 @@
-import core
+from data import core
 conn = core.engine.connect()
 
 ins_tb_cond = core.table_cond.insert()

@@ -1,0 +1,12 @@
+{% extends "homepage.html"%}
+
+{% block content %}
+    <form action="{{ url_for('getCadFunc')}}" method="post">
+        <input type="text" required value="CPF" name="funccpf"><br>
+        <input type="text" required value="Nome" name="funcnome"><br>
+        <input type="date" required value="Data Nascimento" name="funcdn"><br>
+        <input type="password" required value="Senha" name="funcpw"><br>
+        <input type="text" value="Função" name="funcfuncao">
+        <button type="submit">Cadastrar</button>
+    </form>
+{% endblock %}
